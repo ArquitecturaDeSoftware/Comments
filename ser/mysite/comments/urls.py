@@ -6,7 +6,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    url(r'^post/$', comment.post_list),
+    url(r'^posts/$', comment.post_list),
     url(r'^posts/(?P<restaurant_id>.+)$', comment.PostList.as_view()),
 ]
 
