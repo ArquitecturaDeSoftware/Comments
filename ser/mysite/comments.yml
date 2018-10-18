@@ -1,0 +1,115 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Microservice for Comments
+  description: python + mongodb
+  license:
+    name: Software Architecture 2018-II
+host: 127.0.0.1:8000
+basePath: /comment/
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /comments:
+    post:
+      summary: Creates a new comment
+      operationId: createComment
+      parameters:
+        - name: comment
+          in: body
+          required: true
+          description: Coumment Object
+          schema:
+            $ref: '#/definitions/Comment'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    get:
+      summary: Returns all comments
+      operationId: Comment.objects.all()
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Comment'
+        '406':
+          description: Not Acceptable (Invalid Params)
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /comment/{restaurant_id}:
+    get:
+      summary: Returns all comments with the given restaurant_id
+      operationId: getCommentByRestaurantId
+      parameters:
+        - name: restaurant_id
+          in: path
+          description: The code of the comment to be returned
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Comment'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+
+definitions:
+
+  # Comment
+  Comment:
+    type: object
+    properties:
+      id:
+        type: integer
+      restaurant_id:
+        type: integer
+      comment_text:
+        type: string
+      likes:
+        type: integer
+      score:
+        type: integer
+
+# Errors
+  ErrorModel:
+    type: object
+    properties:
+      id:
+        type: integer
+      restaurant_id:
+        type: integer
+      comment_text:
+        type: string
+      likes:
+        type: integer
+      score:
+        type: integer
