@@ -18,7 +18,7 @@ count = 0
 
 class Post(models.Model):
     id = models.IntegerField( primary_key=True )
-    restaurant_id = models.IntegerField( )
+    restaurant_id = models.TextField( )
     score = models.IntegerField( validators = [ MinValueValidator( 0 ), MaxValueValidator( 5 ) ] )
     created_on = models.DateTimeField(auto_now_add=True, null=True)
     text = models.TextField()
