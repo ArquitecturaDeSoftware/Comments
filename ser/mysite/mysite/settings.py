@@ -79,7 +79,7 @@ DATABASES = {
    'default' : {
       'ENGINE' : 'djongo',
       'NAME' : 'mongodatabase',
-      'HOST': '192.168.99.101',  
+      'HOST': '104.196.222.74',  
    }
 }
 

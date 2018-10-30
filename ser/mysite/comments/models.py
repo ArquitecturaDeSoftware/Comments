@@ -17,7 +17,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 count = 0
 
 class Post(models.Model):
-    id = models.IntegerField( primary_key=True )
+    id = models.AutoField( primary_key=True )
     restaurant_id = models.TextField( )
     score = models.IntegerField( validators = [ MinValueValidator( 0 ), MaxValueValidator( 5 ) ] )
     created_on = models.DateTimeField(auto_now_add=True, null=True)
